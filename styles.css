@@ -750,7 +750,7 @@ img {
         display: none;
         position: absolute;
         top: calc(100% + 10px);
-        right: 0;
+        right: 14px; /* keep a small margin from edge */
         width: min(260px, 92vw);
         background: var(--surface-strong);
         border: 1px solid var(--line);
@@ -759,6 +759,7 @@ img {
         flex-direction: column;
         padding: 8px 6px;
         z-index: 120;
+        text-align: right; /* align links to right */
     }
 
     .navbar.is-open .nav-menu {
@@ -789,6 +790,7 @@ img {
         padding: 12px 14px;
         border-radius: 8px;
         background: rgba(23, 26, 83, 0.04);
+        text-align: right;
     }
 
     .nav-menu a::after {
