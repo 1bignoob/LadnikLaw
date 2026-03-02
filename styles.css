@@ -790,19 +790,6 @@ img {
         background: rgba(23,26,83,0.08); /* slightly darker grey */
         transition: background 0.2s ease;
     }
-+
-+    /* add chevron on the right of each link (for submenus) */
-+    .nav-menu a::after {
-+        content: "\f0d7"; /* fontawesome chevron-down */
-+        font-family: "Font Awesome 6 Free";
-+        font-weight: 900;
-+        position: absolute;
-+        right: 12px;
-+        top: 50%;
-+        transform: translateY(-50%);
-+        font-size: 0.8rem;
-+        color: var(--muted);
-+    }
 
     .nav-menu li {
         width: 100%;
@@ -814,12 +801,21 @@ img {
         padding: 12px 20px; /* extra side padding */
         border-radius: 8px;
         background: rgba(23, 26, 83, 0.04);
-        text-align: left; /* left align text */
+        text-align: left !important; /* force left align on all devices */
         position: relative;
     }
 
     .nav-menu a::after {
-        display: none;
+        content: "\f0d7"; /* fontawesome chevron-down */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8rem;
+        color: var(--muted);
+        display: block; /* show the chevron */
     }
 
     .nav-cta {
