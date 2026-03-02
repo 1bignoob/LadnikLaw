@@ -1,6 +1,15 @@
+const navbar = document.querySelector('.navbar');
+const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelectorAll('.nav-menu a');
 const sections = document.querySelectorAll('section[id]');
 const contactForm = document.getElementById('contactForm');
+
+if (menuToggle && navbar) {
+    menuToggle.addEventListener('click', () => {
+        const isOpen = navbar.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+}
 
 navLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
@@ -14,6 +23,11 @@ navLinks.forEach((link) => {
                 behavior: 'smooth',
                 block: 'start'
             });
+        }
+
+        if (navbar && window.innerWidth <= 860) {
+            navbar.classList.remove('is-open');
+            menuToggle?.setAttribute('aria-expanded', 'false');
         }
     });
 });
