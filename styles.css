@@ -719,6 +719,15 @@ img {
         width: 100%;
     }
 
+    /* ensure hamburger sits on right side with brand on the left */
+    /* fallback: add auto margin in case justify-content is ignored */
+    .nav-top-row {
+        justify-content: space-between;
+    }
+    .menu-toggle {
+        margin-left: auto;
+    }
+
     .menu-toggle {
         display: inline-block;
     }
@@ -726,7 +735,7 @@ img {
     /* On mobile keep a compact top row and make the menu a right-aligned dropdown panel */
     .nav-dropdown {
         display: block;
-        width: 100%;
+        width: auto; /* only as wide as its content */
         position: relative;
         align-items: stretch;
         gap: 14px;
@@ -748,18 +757,19 @@ img {
     /* hide inline menu, show as dropdown when toggled */
     .nav-menu {
         display: none;
-        position: absolute;
-        top: calc(100% + 10px);
-        right: 14px; /* keep a small margin from edge */
-        width: min(260px, 92vw);
+        position: fixed; /* pin to viewport, not parent */
+        top: 64px; /* just below header; adjust if header height changes */
+        right: 14px;
+        max-width: 320px; /* wider container */
+        width: auto;
         background: var(--surface-strong);
         border: 1px solid var(--line);
         border-radius: 12px;
         box-shadow: 0 18px 40px rgba(23,20,17,0.12);
         flex-direction: column;
-        padding: 8px 6px;
+        padding: 16px 14px; /* more space around links */
         z-index: 120;
-        text-align: right; /* align links to right */
+        text-align: left; /* submenu items left-aligned */
     }
 
     .navbar.is-open .nav-menu {
@@ -777,8 +787,22 @@ img {
     }
 
     .nav-menu a:hover {
-        background: rgba(23,26,83,0.04);
+        background: rgba(23,26,83,0.08); /* slightly darker grey */
+        transition: background 0.2s ease;
     }
++
++    /* add chevron on the right of each link (for submenus) */
++    .nav-menu a::after {
++        content: "\f0d7"; /* fontawesome chevron-down */
++        font-family: "Font Awesome 6 Free";
++        font-weight: 900;
++        position: absolute;
++        right: 12px;
++        top: 50%;
++        transform: translateY(-50%);
++        font-size: 0.8rem;
++        color: var(--muted);
++    }
 
     .nav-menu li {
         width: 100%;
@@ -787,10 +811,11 @@ img {
     .nav-menu a {
         display: block;
         width: 100%;
-        padding: 12px 14px;
+        padding: 12px 20px; /* extra side padding */
         border-radius: 8px;
         background: rgba(23, 26, 83, 0.04);
-        text-align: right;
+        text-align: left; /* left align text */
+        position: relative;
     }
 
     .nav-menu a::after {
