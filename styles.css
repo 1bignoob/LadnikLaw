@@ -787,8 +787,7 @@ img {
     }
 
     .nav-menu a:hover {
-        background: rgba(23,26,83,0.08); /* slightly darker grey */
-        transition: background 0.2s ease;
+        background: rgba(23,26,83,0.04); /* same as default, no change */
     }
 
     /* add chevron on the right of each link (for submenus) */
@@ -819,7 +818,7 @@ img {
     }
 
     .nav-menu a::after {
-        display: none;
+        display: none !important; /* hide chevron completely */
     }
 
     .nav-cta {
