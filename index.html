@@ -21,18 +21,33 @@
     <div class="page-shell">
         <header class="site-header">
             <nav class="navbar">
-                <a href="#home" class="brand" aria-label="Ladnik Law home">
-                    <span class="brand-mark">LL</span>
-                    <span class="brand-text">Ladnik Law</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#practice">Practice Areas</a></li>
-                    <li><a href="#approach">Approach</a></li>
-                    <li><a href="#results">Why Clients Stay</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <a href="#contact" class="nav-cta">Request a Consultation</a>
+                <div class="nav-top-row">
+                    <a href="#home" class="brand" aria-label="Ladnik Law home">
+                        <span class="brand-mark">LL</span>
+                        <span class="brand-text">Ladnik Law</span>
+                    </a>
+                    <button
+                        type="button"
+                        class="menu-toggle"
+                        aria-expanded="false"
+                        aria-controls="navDropdown"
+                        aria-label="Toggle navigation"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                <div class="nav-dropdown" id="navDropdown">
+                    <ul class="nav-menu">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#practice">Practice Areas</a></li>
+                        <li><a href="#approach">Approach</a></li>
+                        <li><a href="#results">Why Clients Stay</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <a href="#contact" class="nav-cta">Request a Consultation</a>
+                </div>
             </nav>
         </header>
 
