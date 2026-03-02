@@ -92,3 +92,42 @@ function syncActiveNav() {
 
 window.addEventListener('scroll', syncActiveNav, { passive: true });
 window.addEventListener('load', syncActiveNav);
+
+// Close mobile dropdown when clicking outside, on Escape, or when resizing to desktop
+document.addEventListener('click', (e) => {
+    const toggle = document.querySelector('.menu-toggle');
+    const navbarEl = document.querySelector('.navbar');
+    const navMenu = document.querySelector('.nav-menu');
+    if (!toggle || !navbarEl || !navMenu) return;
+
+    const isOpen = navbarEl.classList.contains('is-open');
+    if (!isOpen) return;
+
+    // if the click is inside the nav or on the toggle, do nothing
+    const withinNav = e.composedPath().some((el) => el === navMenu || el === toggle || (el && el.classList && el.classList.contains && el.classList.contains('nav-dropdown')));
+    if (withinNav) return;
+
+    // otherwise close
+    navbarEl.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+});
+
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const navbarEl = document.querySelector('.navbar');
+        const toggle = document.querySelector('.menu-toggle');
+        if (navbarEl && navbarEl.classList.contains('is-open')) {
+            navbarEl.classList.remove('is-open');
+            toggle?.setAttribute('aria-expanded', 'false');
+        }
+    }
+});
+
+window.addEventListener('resize', () => {
+    const navbarEl = document.querySelector('.navbar');
+    const toggle = document.querySelector('.menu-toggle');
+    if (window.innerWidth > 860 && navbarEl && navbarEl.classList.contains('is-open')) {
+        navbarEl.classList.remove('is-open');
+        toggle?.setAttribute('aria-expanded', 'false');
+    }
+});
