@@ -209,13 +209,12 @@ img {
   position: relative;
   max-width: var(--content-width);
   margin: 22px auto 0;
-  padding: 0; /* remove internal padding so overlay spans full area */
-  min-height: calc(100vh - 120px);
+  padding: 0;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 36px;
-  /* background now handled by .hero-bg, which also overlays a gradient */
   color: #f7f6ff;
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -225,27 +224,21 @@ img {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: flex-start; /* move content to top */
+  align-items: flex-start;
   justify-content: center;
   z-index: 1;
   color: #fff;
   text-align: center;
   font-family: "Cormorant Garamond", serif;
   font-weight: 800;
-  padding: 40px 24px 0; /* top padding to position near top edge */
+  padding: 40px 24px 0;
   text-transform: uppercase;
 }
 
 .hero-overlay h1 {
-  /* allow wrapping so long headlines can break */
-  white-space: normal;
+  max-width: 80%;
   line-height: 1.1;
-  max-width: 90vw;
-  font-size: clamp(1.5rem, 4vw, 3rem);
-}
-
-#home-details {
-  margin-top: 0; /* flush against hero */
+  font-size: clamp(1.4rem, 3.6vw, 2.8rem);
 }
 
 .hero-grid {
@@ -883,7 +876,7 @@ img {
   }
 
   .hero {
-    min-height: auto;
+    min-height: 78vh;
   }
 
   .section,
@@ -905,6 +898,11 @@ img {
     font-size: clamp(1.5rem, 10vw, 2.5rem);
   }
 
+  .hero-overlay h1 {
+    max-width: 88%;
+    font-size: clamp(1.2rem, 6vw, 2rem);
+  }
+
   .section-heading h2 {
     font-size: clamp(2.2rem, 14vw, 3.1rem);
   }
@@ -917,64 +915,5 @@ img {
   .button,
   .nav-cta {
     width: 100%;
-  }
-
-  /* New form */
-  body {
-    font-family: Arial, sans-serif;
-    background: #f4f7f8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-  }
-  form {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  form div {
-    margin-bottom: 15px;
-  }
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  button[type="submit"] {
-    background: #28a745;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  button[type="submit"]:hover {
-    background: #218838;
-  }
-  #result {
-    margin-top: 20px;
-    font-size: 14px;
   }
 }
