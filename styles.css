@@ -751,10 +751,13 @@ img {
 
 @media (max-width: 860px) {
   .site-header {
-    position: static;
+    position: relative;
+    z-index: 220;
   }
 
   .navbar {
+    position: relative;
+    z-index: 230;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
@@ -806,9 +809,9 @@ img {
   /* hide inline menu, show as dropdown when toggled */
   .nav-menu {
     display: none;
-    position: fixed; /* pin to viewport, not parent */
-    top: 64px; /* just below header; adjust if header height changes */
-    right: 14px;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
     max-width: 320px; /* wider container */
     width: auto;
     background: var(--surface-strong);
@@ -817,7 +820,7 @@ img {
     box-shadow: 0 18px 40px rgba(23, 20, 17, 0.12);
     flex-direction: column;
     padding: 16px 14px; /* more space around links */
-    z-index: 120;
+    z-index: 500;
     text-align: left; /* submenu items left-aligned */
   }
 
