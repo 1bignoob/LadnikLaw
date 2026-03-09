@@ -14,6 +14,8 @@ const result = document.getElementById("result");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
+  let submissionSucceeded = false;
+
   const formData = new FormData(form);
 
   // Get the name input value
@@ -41,18 +43,28 @@ form.addEventListener("submit", function (e) {
     .then(async (response) => {
       let json = await response.json();
       if (response.status == 200) {
-        result.innerHTML = json.message;
+        submissionSucceeded = true;
+        result.style.display = "block";
+        result.innerHTML = `${json.message}. Someone from the offices of Ladnik will contact you shortly.`;
       } else {
         console.log(response);
+        submissionSucceeded = false;
+        result.style.display = "block";
         result.innerHTML = json.message;
       }
     })
     .catch((error) => {
       console.log(error);
+      submissionSucceeded = false;
+      result.style.display = "block";
       result.innerHTML = "Something went wrong!";
     })
     .then(function () {
-      form.reset();
+      if (submissionSucceeded) {
+        form.reset();
+        return;
+      }
+
       setTimeout(() => {
         result.style.display = "none";
       }, 3000);
