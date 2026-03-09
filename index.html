@@ -271,6 +271,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Original form
                     <form class="contact-form" id="contactForm">
                         <label class="field">
                             <span>Name</span>
@@ -290,6 +291,38 @@
                         </label>
                         <button type="submit" class="button button-primary button-full">Submit Request</button>
                     </form>
+                -->
+                <!--New form-->        
+                <form method="POST" id="form">
+
+                    <input type="hidden" name="access_key" value="b37e336d-5ec0-46d1-b376-1ffa3bd229c6">
+                    <input type="hidden" name="subject" value="New Submission from Web3Forms">
+                    <input type="checkbox" name="botcheck" id="" style="display: none;">
+
+                    <!-- Custom Form Data -->
+         <div>
+                     <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required>
+        </div>
+        <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    </div>
+    <div>
+                <label for="phone">Phone (optional):</label>
+                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+    </div>
+    <div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Your message here" required></textarea>
+    </div>
+
+                <button type="submit">Submit</button>
+
+    <div id="result"></div>
+
+    </form>
+                <!--End new form-->
                 </div>
             </section>
         </main>
