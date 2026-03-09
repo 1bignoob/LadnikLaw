@@ -206,26 +206,51 @@ img {
 }
 
 .hero {
+  position: relative;
   max-width: var(--content-width);
   margin: 22px auto 0;
-  padding: 48px;
+  padding: 0; /* remove internal padding so overlay spans full area */
   min-height: calc(100vh - 120px);
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 36px;
-  background:
-    radial-gradient(
-      circle at 75% 20%,
-      rgba(244, 195, 19, 0.22),
-      transparent 22%
-    ),
-    linear-gradient(135deg, #171a53 0%, #1c1f78 42%, #2a2d8f 100%);
+  /* background now handled by .hero-bg, which also overlays a gradient */
   color: #f7f6ff;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start; /* move content to top */
+  justify-content: center;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 800;
+  padding: 40px 24px 0; /* top padding to position near top edge */
+  text-transform: uppercase;
+}
+
+.hero-overlay h1 {
+  /* allow wrapping so long headlines can break */
+  white-space: normal;
+  line-height: 1.1;
+  max-width: 90vw;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+#home-details {
+  margin-top: 0; /* flush against hero */
+}
+
 .hero-grid {
+  position: relative;
+  z-index: 1;
   width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
@@ -249,9 +274,9 @@ img {
   letter-spacing: -0.02em;
 }
 
-.hero h1 {
+.hero-copy h1 {
   max-width: 8.5ch;
-  font-size: clamp(3.6rem, 7vw, 6.8rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   margin-bottom: 18px;
 }
 
@@ -321,8 +346,24 @@ img {
   position: relative;
 }
 
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url("assets/img/NYPano.jpg") center/cover no-repeat;
+  z-index: 0;
+  opacity: 1;
+  /* no fade, always fully opaque */
+}
+
+.hero-photo {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-top: 24px;
+  object-fit: cover;
+}
+
 .case-card {
-  padding: 28px;
   border-radius: var(--radius-xl);
   background: linear-gradient(
     180deg,
@@ -585,16 +626,9 @@ img {
 }
 
 #result {
-    margin-top: 14px;
-    font-size: 0.95rem;
-    color: var(--muted);
-}
+  margin-top: 14px;
+  font-size: 0.95rem;
   color: var(--muted);
-}
-
-.contact-item i {
-  margin-top: 4px;
-  color: var(--accent);
 }
 
 .contact-form {
@@ -711,7 +745,7 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .hero h1 {
+  .hero-copy h1 {
     max-width: none;
   }
 
@@ -867,8 +901,8 @@ img {
     padding: 0 14px 24px;
   }
 
-  .hero h1 {
-    font-size: clamp(2.8rem, 16vw, 4.1rem);
+  .hero-copy h1 {
+    font-size: clamp(1.5rem, 10vw, 2.5rem);
   }
 
   .section-heading h2 {

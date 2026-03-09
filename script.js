@@ -3,15 +3,31 @@ const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelectorAll(".nav-menu a");
 const sections = document.querySelectorAll("section[id]");
 
+// hero elements (used for size / other features)
+const hero = document.querySelector(".hero");
+const heroBg = document.querySelector(".hero-bg");
+
 /* New form */
 const form = document.getElementById("form");
 const result = document.getElementById("result");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
   const formData = new FormData(form);
+
+  // Get the name input value
+  const name = formData.get("name");
+
+  // Create a custom subject
+  const subject = `${name} sent a message from website`;
+
+  // Append the custom subject to the form data
+  formData.append("subject", subject);
+
   const object = Object.fromEntries(formData);
   const json = JSON.stringify(object);
+
   result.innerHTML = "Please wait...";
 
   fetch("https://api.web3forms.com/submit", {
@@ -126,8 +142,16 @@ function syncActiveNav() {
   });
 }
 
-window.addEventListener("scroll", syncActiveNav, { passive: true });
-window.addEventListener("load", syncActiveNav);
+window.addEventListener(
+  "scroll",
+  (e) => {
+    syncActiveNav(e);
+  },
+  { passive: true },
+);
+window.addEventListener("load", () => {
+  syncActiveNav();
+});
 
 // Close mobile dropdown when clicking outside, on Escape, or when resizing to desktop
 document.addEventListener("click", (e) => {
