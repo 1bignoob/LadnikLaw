@@ -45,7 +45,7 @@ form.addEventListener("submit", function (e) {
       if (response.status == 200) {
         submissionSucceeded = true;
         result.style.display = "block";
-        result.innerHTML = `${json.message}. Someone from the offices of Ladnik will contact you shortly.`;
+        result.innerHTML = `${json.message} Someone from the offices of Ladnik Law will contact you shortly.`;
       } else {
         console.log(response);
         submissionSucceeded = false;
