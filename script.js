@@ -20,7 +20,7 @@ form.addEventListener("submit", function (e) {
   const name = formData.get("name");
 
   // Create a custom subject
-  const subject = `${name} sent a message from website`;
+  const subject = `${name} sent a message through LadnikLaw.com`;
 
   // Append the custom subject to the form data
   formData.append("subject", subject);
@@ -121,8 +121,37 @@ const observer = new IntersectionObserver(
   },
 );
 
-document.querySelectorAll(".reveal-item").forEach((item) => {
-  observer.observe(item);
+const revealGroups = [
+  ".section",
+  ".reveal-item",
+  ".highlight-card",
+  ".practice-card",
+  ".process-step",
+  ".trust-quote",
+  ".trust-list",
+  ".contact-panel",
+  ".contact-form",
+];
+
+const revealedElements = new Set();
+
+revealGroups.forEach((selector) => {
+  document.querySelectorAll(selector).forEach((item) => {
+    if (revealedElements.has(item)) return;
+
+    revealedElements.add(item);
+    item.classList.add("reveal-item");
+
+    const group = item.closest(
+      ".about-highlights, .practice-grid, .process-grid, .trust-grid, .contact-layout",
+    );
+    const siblings = group ? Array.from(group.children) : [];
+    const indexInGroup = siblings.indexOf(item);
+    const staggerIndex = indexInGroup >= 0 ? indexInGroup : 0;
+
+    item.style.transitionDelay = `${staggerIndex * 90}ms`;
+    observer.observe(item);
+  });
 });
 
 function syncActiveNav() {
